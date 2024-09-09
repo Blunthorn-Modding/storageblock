@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "net/wouterb/mixin/CraftingUpgradeContainerMixin": {
+      "updateCraftingResult": "Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer;updateCraftingResult(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_8566;Lnet/minecraft/class_1731;Lnet/minecraft/class_1734;)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "net/wouterb/mixin/CraftingUpgradeContainerMixin": {
+        "updateCraftingResult": "Lnet/p3pp3rf1y/sophisticatedcore/upgrades/crafting/CraftingUpgradeContainer;updateCraftingResult(Lnet/minecraft/class_1937;Lnet/minecraft/class_1657;Lnet/minecraft/class_8566;Lnet/minecraft/class_1731;Lnet/minecraft/class_1734;)V"
+      }
+    }
+  }
+}
