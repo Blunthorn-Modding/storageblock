@@ -3,6 +3,7 @@
   "package": "net.wouterb.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "CraftingTerminalBlockEntityMixin",
     "CraftingUpgradeContainerMixin"
   ],
   "injectors": {
