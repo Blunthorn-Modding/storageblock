@@ -1,13 +1,12 @@
-package net.wouterb.mixin;
+package net.wouterb.mixin.tomssimplestorage;
 
-import com.tom.storagemod.tile.CraftingTerminalBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.RecipeInputInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
-import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.registry.Registries;
+import net.minecraft.screen.slot.CraftingResultSlot;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
 import net.wouterb.blunthornapi.api.context.ItemActionContext;
@@ -20,16 +19,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Optional;
 
-@SuppressWarnings("UnreachableCode")
-@Mixin(CraftingTerminalBlockEntity.class)
-public class CraftingTerminalBlockEntityMixin {
+@Mixin(targets = "com.tom.storagemod.gui.CraftingTerminalMenu$Result")
+public abstract class CraftingTerminalResultMixin extends CraftingResultSlot{
 
-    @Inject(method = "craft", at = @At("HEAD"), cancellable = true)
-    public void craft(PlayerEntity player, CallbackInfo ci) {
-        System.out.println("CRAFT!");
+    public CraftingTerminalResultMixin(PlayerEntity player, RecipeInputInventory input, Inventory inventory, int index, int x, int y) {
+        super(player, input, inventory, index, x, y);
+    }
+
+    @Inject(method = "onTakeItem", at = @At("HEAD"), cancellable = true)
+    public void onTakeItem(PlayerEntity player, ItemStack stack, CallbackInfo ci) {
         World world = player.getWorld();
-        CraftingTerminalBlockEntity craftingTerminalBlockEntity = (CraftingTerminalBlockEntity) (Object) this;
-        RecipeInputInventory craftingInventory = craftingTerminalBlockEntity.getCraftingInv();
+        RecipeInputInventory craftingInventory = ((CraftingResultSlotMixin) this).getInput();
 
         if (world.isClient) return;
 
@@ -44,14 +44,8 @@ public class CraftingTerminalBlockEntityMixin {
 
         if (actionResult == ActionResult.FAIL) {
             player.currentScreenHandler.setCursorStack(ItemStack.EMPTY);
+            setStack(output);
             ci.cancel();
         }
-
     }
-
-//    @Inject(method = "onCraftingMatrixChanged", at = @At("HEAD"), cancellable = true, remap = false)
-//    protected void onCraftingMatrixChanged(CallbackInfo ci) {
-//        System.out.println("MATRIX CHANGED");
-////        ci.cancel();
-//    }
 }

@@ -3,8 +3,10 @@
   "package": "net.wouterb.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "CraftingTerminalBlockEntityMixin",
-    "CraftingUpgradeContainerMixin"
+    "sophisticatedbackpacks.CraftingUpgradeContainerMixin",
+    "tomssimplestorage.CraftingResultSlotMixin",
+    "tomssimplestorage.CraftingTerminalMenuMixin",
+    "tomssimplestorage.CraftingTerminalResultMixin"
   ],
   "injectors": {
     "defaultRequire": 1

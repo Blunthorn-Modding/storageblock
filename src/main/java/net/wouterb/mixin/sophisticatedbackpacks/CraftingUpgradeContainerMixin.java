@@ -1,4 +1,4 @@
-package net.wouterb.mixin;
+package net.wouterb.mixin.sophisticatedbackpacks;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingResultInventory;
